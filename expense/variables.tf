@@ -1,13 +1,16 @@
-#1. command line
-#2. tfvars
-#3. ENV variable
-#4. variable default value
+# ec2 variables
+
+variable "instance_names" {
+    type = list(string) 
+    default = ["db", "backend" , "frontend"]
+  
+}
 
 
 variable "image_id" {
-    type = string #optional
-    default = "ami-031d574cddc5bb371" #optional
-    description = "RHEL-9 AMI ID" #optional
+    type = string
+    default = "ami-031d574cddc5bb371"
+    description = "RHEL-9 AMI ID"
   
 }
 
@@ -18,15 +21,16 @@ variable "instance_type" {
   
 }
 
-variable "tags" {
+variable "common_tags" {
     default = {
         project = "expense"
         Environment = "Dev"
-        Module = "DB"
-        Name = "DB"
+        Terraform = "true"
     }
   
 }
+
+# sg variables
 
 variable "sg_name" {
     type = string
@@ -64,4 +68,17 @@ variable "sg_tags" {
     }
   
 }
+
+# r53 variables
+
+variable "zone_id" {
+    default = "Z0435238KUTVSCMG0LOT"
+  
+}
+
+variable "domain_name" {
+    default = "hasamahas.online"
+  
+}
+
 
